@@ -1,3 +1,6 @@
+% *** DATA PREPROCESSING ***
+
+
 % Clear workspace and console, close all figures
 clear all;
 close all;
@@ -105,7 +108,7 @@ nTestSet = length(testSet);
 
 % Define array that stores words comprised of its individual characters
 % mapped to input symbols
-wordsInputSym = string(size(words))';
+wordsInputSym = strings(size(words));
 
 for k = 1 : nWords
     
@@ -130,7 +133,6 @@ for k = 1 : nWords
     wordsInputSym(k) = string(word);
     
 end
-
 
 % Save workspace variables to file
 save('data', 'alphabet', 'dictionary', 'nKeys', 'nTestSet', 'nTrainSet', 'nWords', ...
