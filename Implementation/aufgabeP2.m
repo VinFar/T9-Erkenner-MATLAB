@@ -53,6 +53,8 @@ dictionary = containers.Map(keySet, valueSet);
 % Compute number of keys
 nKeys = dictionary.Count;
 
+%%
+
 % Read text corpus
 fileID = fopen(filename);
 corpus = textscan(fileID, '%d %s %s %d', 'Delimiter',{'\t'});
