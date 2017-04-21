@@ -59,7 +59,7 @@ nKeys = dictionary.Count;
 
 %%
 
-% Read text corpus
+% TESTRead text corpus
 fileID = fopen(filename);
 corpus = textscan(fileID, '%d %s %s %d', 'Delimiter',{'\t'});
 fclose(fileID);
