@@ -44,8 +44,12 @@ valueSet = { ...
     }';
 
 % Compose entire alphabet
-alphabet = char(join(valueSet, ''));
+alphabet = char(join(string(valueSet), ''));
 keys = char(join(keySet, ''));
+%%
+
+% Von Robin geändert
+
 
 % Create input -> output map
 dictionary = containers.Map(keySet, valueSet);
@@ -77,7 +81,7 @@ for index = 1:nWordsRaw
     end
     
 end
-
+%%
 % Extract words containing only character existing in the alphabet
 words = wordsRaw(wordsRaw ~= "-----");
 
@@ -93,7 +97,7 @@ partition = cvpartition(nWords, 'HoldOut', 0.3);
 % Alternatively:
 % Divide the observations into k disjoint subsamples (or folds), chosen
 % randomly but with roughly equal size.
-% partition = cvpartition(nWords, 'KFold', 10);
+% partition = cvpartition(nWords, 'KFold', 10); 
 
 % Choose first fold in case of k-fold partitioning and extract indices for
 % training and test samples
