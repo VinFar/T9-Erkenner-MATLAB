@@ -8,7 +8,7 @@ clc;
 
 
 % Select language: 'German' or 'English'
-language = 'English';
+language = 'German';
 
 % Specify filename for respective text corpus obtained from
 % http://wortschatz.uni-leipzig.de/en/download
@@ -46,10 +46,6 @@ valueSet = { ...
 % Compose entire alphabet
 alphabet = char(join(string(valueSet), ''));
 keys = char(join(keySet, ''));
-%%
-
-% Von Robin geändert
-
 
 % Create input -> output map
 dictionary = containers.Map(keySet, valueSet);
@@ -57,10 +53,8 @@ dictionary = containers.Map(keySet, valueSet);
 % Compute number of keys
 nKeys = dictionary.Count;
 
-%%
-
-% TESTRead text corpus
-fileID = fopen(filename);
+% Read text corpus
+fileID = fopen(['../Corpora/', filename]);
 corpus = textscan(fileID, '%d %s %s %d', 'Delimiter',{'\t'});
 fclose(fileID);
 
@@ -81,8 +75,8 @@ for index = 1:nWordsRaw
     end
     
 end
-%%
-% Extract words containing only character existing in the alphabet
+
+% Extract words containing only characters existing in the alphabet
 words = wordsRaw(wordsRaw ~= "-----");
 
 % Convert all strings to lowercase
@@ -112,8 +106,8 @@ testSet = words(idxTest);
 nTrainSet = length(trainSet);
 nTestSet = length(testSet);
 
-% Define array that stores words comprised of its individual characters
-% mapped to input symbols
+% Define array that stores words comprised of input symbols that map to the
+% respective character.
 wordsInputSym = strings(size(words));
 
 for k = 1 : nWords
@@ -141,6 +135,8 @@ for k = 1 : nWords
 end
 
 % Save workspace variables to file
-save('data', 'alphabet', 'dictionary', 'nKeys', 'nTestSet', 'nTrainSet', 'nWords', ...
-    'testSet', 'trainSet', 'valueSet', 'words', 'wordsInputSym');
+save(['data/data', language], ...
+    'alphabet', 'dictionary', 'idxTest', 'idxTrain', 'nKeys', 'nTestSet', ...
+    'nTrainSet', 'nWords', 'testSet', 'trainSet', 'valueSet', 'words', ...
+    'language', 'wordsInputSym', 'partition');
 
