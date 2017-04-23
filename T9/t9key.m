@@ -27,11 +27,11 @@ function varargout = t9key(varargin)
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
-                   'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @t9key_OpeningFcn, ...
-                   'gui_OutputFcn',  @t9key_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
-                   'gui_Callback',   []);
+    'gui_Singleton',  gui_Singleton, ...
+    'gui_OpeningFcn', @t9key_OpeningFcn, ...
+    'gui_OutputFcn',  @t9key_OutputFcn, ...
+    'gui_LayoutFcn',  [] , ...
+    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
 end
@@ -69,7 +69,7 @@ last_pushed = [];
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = t9key_OutputFcn(hObject, eventdata, handles) 
+function varargout = t9key_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -96,7 +96,7 @@ times_pushed = times_pushed + 1;
 if times_pushed == 1
     if cap == 0
         newstr = strcat(string,'g');
-    else 
+    else
         newstr = strcat(string,'G');
     end
     set(handles.text2,'String',newstr)
@@ -106,7 +106,7 @@ elseif times_pushed == 2 && strcmp(last_pushed,'g') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'h');
-    else 
+    else
         newstr = strcat(string,'H');
     end
     set(handles.text2,'String',newstr)
@@ -116,7 +116,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'h') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'i');
-    else 
+    else
         newstr = strcat(string,'I');
     end
     set(handles.text2,'String',newstr)
@@ -124,7 +124,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'h') == 1;
     times_pushed = 0;
 else
     times_pushed = 0;
-end   
+end
 
 
 
@@ -147,7 +147,7 @@ times_pushed = times_pushed + 1;
 if times_pushed == 1
     if cap == 0
         newstr = strcat(string,'j');
-    else 
+    else
         newstr = strcat(string,'J');
     end
     set(handles.text2,'String',newstr)
@@ -157,7 +157,7 @@ elseif times_pushed == 2 && strcmp(last_pushed,'j') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'k');
-    else 
+    else
         newstr = strcat(string,'K');
     end
     set(handles.text2,'String',newstr)
@@ -167,7 +167,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'k') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'l');
-    else 
+    else
         newstr = strcat(string,'L');
     end
     set(handles.text2,'String',newstr)
@@ -175,7 +175,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'k') == 1;
     times_pushed = 0;
 else
     times_pushed = 0;
-end    
+end
 
 
 % --- Executes on button press in pushbutton3.
@@ -195,7 +195,7 @@ times_pushed = times_pushed + 1;
 if times_pushed == 1
     if cap == 0
         newstr = strcat(string,'m');
-    else 
+    else
         newstr = strcat(string,'M');
     end
     set(handles.text2,'String',newstr)
@@ -205,7 +205,7 @@ elseif times_pushed == 2 && strcmp(last_pushed,'m') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'n');
-    else 
+    else
         newstr = strcat(string,'N');
     end
     set(handles.text2,'String',newstr)
@@ -215,7 +215,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'n') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'o');
-    else 
+    else
         newstr = strcat(string,'O');
     end
     set(handles.text2,'String',newstr)
@@ -223,7 +223,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'n') == 1;
     times_pushed = 0;
 else
     times_pushed = 0;
-end   
+end
 
 % --- Executes on button press in pushbutton4.
 function pushbutton4_Callback(hObject, eventdata, handles)
@@ -242,7 +242,7 @@ times_pushed = times_pushed + 1
 if times_pushed == 1
     if cap == 0
         newstr = strcat(string,'p');
-    else 
+    else
         newstr = strcat(string,'P');
     end
     set(handles.text2,'String',newstr)
@@ -252,7 +252,7 @@ elseif times_pushed == 2 && strcmp(last_pushed,'p') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'q');
-    else 
+    else
         newstr = strcat(string,'Q');
     end
     set(handles.text2,'String',newstr)
@@ -262,26 +262,26 @@ elseif times_pushed == 3 && strcmp(last_pushed,'q') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'r');
-    else 
+    else
         newstr = strcat(string,'R');
     end
     set(handles.text2,'String',newstr)
     disp(newstr)
     last_pushed = ('r');
-
+    
 elseif times_pushed == 4 && strcmp(last_pushed,'r') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'s');
-    else 
+    else
         newstr = strcat(string,'S');
     end
     set(handles.text2,'String',newstr)
     disp(newstr)
     times_pushed = 0;
-else 
+else
     times_pushed = 0;
-end   
+end
 
 % --- Executes on button press in pushbutton5.
 function pushbutton5_Callback(hObject, eventdata, handles)
@@ -300,7 +300,7 @@ times_pushed = times_pushed + 1;
 if times_pushed == 1
     if cap == 0
         newstr = strcat(string,'t');
-    else 
+    else
         newstr = strcat(string,'T');
     end
     set(handles.text2,'String',newstr)
@@ -310,7 +310,7 @@ elseif times_pushed == 2 && strcmp(last_pushed,'t') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'u');
-    else 
+    else
         newstr = strcat(string,'U');
     end
     set(handles.text2,'String',newstr)
@@ -320,7 +320,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'u') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'v');
-    else 
+    else
         newstr = strcat(string,'V');
     end
     set(handles.text2,'String',newstr)
@@ -328,7 +328,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'u') == 1;
     times_pushed = 0;
 else
     times_pushed = 0;
-end   
+end
 
 
 % --- Executes on button press in pushbutton6.
@@ -362,7 +362,7 @@ function pushbutton9_Callback(hObject, eventdata, handles)
 global cap
 if cap == 0
     cap =1
-else 
+else
     cap = 0
 end
 
@@ -409,7 +409,7 @@ times_pushed = times_pushed + 1;
 if times_pushed == 1
     if cap == 0
         newstr = strcat(string,'.');
-    else 
+    else
         newstr = strcat(string,'.');
     end
     set(handles.text2,'String',newstr)
@@ -419,14 +419,14 @@ elseif times_pushed == 2 && strcmp(last_pushed,'.') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,',');
-    else 
+    else
         newstr = strcat(string,',');
     end
     set(handles.text2,'String',newstr)
     disp(newstr)
 else
     times_pushed = 0;
-end   
+end
 
 
 % --- Executes on button press in pushbutton14.
@@ -446,7 +446,7 @@ times_pushed = times_pushed + 1;
 if times_pushed == 1
     if cap == 0
         newstr = strcat(string,'a');
-    else 
+    else
         newstr = strcat(string,'A');
     end
     set(handles.text2,'String',newstr)
@@ -456,7 +456,7 @@ elseif times_pushed == 2 && strcmp(last_pushed,'a') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'b');
-    else 
+    else
         newstr = strcat(string,'B');
     end
     set(handles.text2,'String',newstr)
@@ -466,7 +466,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'b') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'c');
-    else 
+    else
         newstr = strcat(string,'C');
     end
     set(handles.text2,'String',newstr)
@@ -474,7 +474,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'b') == 1;
     times_pushed = 0;
 else
     times_pushed = 0;
-end   
+end
 
 
 % --- Executes on button press in pushbutton15.
@@ -494,7 +494,7 @@ times_pushed = times_pushed + 1;
 if times_pushed == 1
     if cap == 0
         newstr = strcat(string,'e');
-    else 
+    else
         newstr = strcat(string,'E');
     end
     set(handles.text2,'String',newstr)
@@ -504,7 +504,7 @@ elseif times_pushed == 2 && strcmp(last_pushed,'e') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'f');
-    else 
+    else
         newstr = strcat(string,'F');
     end
     set(handles.text2,'String',newstr)
@@ -514,7 +514,7 @@ elseif times_pushed == 3 && strcmp(last_pushed,'f') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'g');
-    else 
+    else
         newstr = strcat(string,'G');
     end
     set(handles.text2,'String',newstr)
@@ -524,7 +524,7 @@ elseif times_pushed == 4 && strcmp(last_pushed,'g') == 1;
     string = string(1:end-1);
     if cap == 0
         newstr = strcat(string,'f');
-    else 
+    else
         newstr = strcat(string,'F');
     end
     set(handles.text2,'String',newstr)
@@ -533,4 +533,4 @@ elseif times_pushed == 4 && strcmp(last_pushed,'g') == 1;
     times_pushed = 0;
 else
     times_pushed = 0;
-end   
+end
