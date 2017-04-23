@@ -86,45 +86,21 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
 if strcmp(string, 'Enter Text')
-    string = []
+    string = [];
 end
-global times_pushed
-global last_pushed
-global cap
-times_pushed = times_pushed + 1;
+global keySequence
+global newKey
 
-if times_pushed == 1
-    if cap == 0
-        newstr = strcat(string,'g');
-    else
-        newstr = strcat(string,'G');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('g');
-elseif times_pushed == 2 && strcmp(last_pushed,'g') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'h');
-    else
-        newstr = strcat(string,'H');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('h');
-elseif times_pushed == 3 && strcmp(last_pushed,'h') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'i');
-    else
-        newstr = strcat(string,'I');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    times_pushed = 0;
-else
-    times_pushed = 0;
-end
+newKey = '4';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
+
 
 
 
@@ -137,45 +113,20 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
 if strcmp(string, 'Enter Text')
-    string = []
+    string = [];
 end
-global times_pushed
-global last_pushed
-global cap
-times_pushed = times_pushed + 1;
+global keySequence
+global newKey
 
-if times_pushed == 1
-    if cap == 0
-        newstr = strcat(string,'j');
-    else
-        newstr = strcat(string,'J');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('j');
-elseif times_pushed == 2 && strcmp(last_pushed,'j') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'k');
-    else
-        newstr = strcat(string,'K');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('k');
-elseif times_pushed == 3 && strcmp(last_pushed,'k') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'l');
-    else
-        newstr = strcat(string,'L');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    times_pushed = 0;
-else
-    times_pushed = 0;
-end
+newKey = '5';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
 
 
 % --- Executes on button press in pushbutton3.
@@ -185,45 +136,20 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
 if strcmp(string, 'Enter Text')
-    string = []
+    string = [];
 end
-global times_pushed
-global last_pushed
-global cap
-times_pushed = times_pushed + 1;
+global keySequence
+global newKey
 
-if times_pushed == 1
-    if cap == 0
-        newstr = strcat(string,'m');
-    else
-        newstr = strcat(string,'M');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('m');
-elseif times_pushed == 2 && strcmp(last_pushed,'m') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'n');
-    else
-        newstr = strcat(string,'N');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('n');
-elseif times_pushed == 3 && strcmp(last_pushed,'n') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'o');
-    else
-        newstr = strcat(string,'O');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    times_pushed = 0;
-else
-    times_pushed = 0;
-end
+newKey = '6';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
 
 % --- Executes on button press in pushbutton4.
 function pushbutton4_Callback(hObject, eventdata, handles)
@@ -232,56 +158,20 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
 if strcmp(string, 'Enter Text')
-    string = []
+    string = [];
 end
-global times_pushed
-global last_pushed
-global cap
-times_pushed = times_pushed + 1
+global keySequence
+global newKey
 
-if times_pushed == 1
-    if cap == 0
-        newstr = strcat(string,'p');
-    else
-        newstr = strcat(string,'P');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('p');
-elseif times_pushed == 2 && strcmp(last_pushed,'p') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'q');
-    else
-        newstr = strcat(string,'Q');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('q');
-elseif times_pushed == 3 && strcmp(last_pushed,'q') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'r');
-    else
-        newstr = strcat(string,'R');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('r');
-    
-elseif times_pushed == 4 && strcmp(last_pushed,'r') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'s');
-    else
-        newstr = strcat(string,'S');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    times_pushed = 0;
-else
-    times_pushed = 0;
-end
+newKey = '7';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
 
 % --- Executes on button press in pushbutton5.
 function pushbutton5_Callback(hObject, eventdata, handles)
@@ -290,45 +180,20 @@ function pushbutton5_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
 if strcmp(string, 'Enter Text')
-    string = []
+    string = [];
 end
-global times_pushed
-global last_pushed
-global cap
-times_pushed = times_pushed + 1;
+global keySequence
+global newKey
 
-if times_pushed == 1
-    if cap == 0
-        newstr = strcat(string,'t');
-    else
-        newstr = strcat(string,'T');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('t');
-elseif times_pushed == 2 && strcmp(last_pushed,'t') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'u');
-    else
-        newstr = strcat(string,'U');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('u');
-elseif times_pushed == 3 && strcmp(last_pushed,'u') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'v');
-    else
-        newstr = strcat(string,'V');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    times_pushed = 0;
-else
-    times_pushed = 0;
-end
+newKey = '8';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
 
 
 % --- Executes on button press in pushbutton6.
@@ -336,7 +201,22 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+string = get(handles.text2,'String');
+if strcmp(string, 'Enter Text')
+    string = [];
+end
+global keySequence
+global newKey
 
+newKey = '9';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
 
 % --- Executes on button press in pushbutton7.
 function pushbutton7_Callback(hObject, eventdata, handles)
@@ -399,34 +279,20 @@ function pushbutton13_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
 if strcmp(string, 'Enter Text')
-    string = []
+    string = [];
 end
-global times_pushed
-global last_pushed
-global cap
-times_pushed = times_pushed + 1;
+global keySequence
+global newKey
 
-if times_pushed == 1
-    if cap == 0
-        newstr = strcat(string,'.');
-    else
-        newstr = strcat(string,'.');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('.');
-elseif times_pushed == 2 && strcmp(last_pushed,'.') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,',');
-    else
-        newstr = strcat(string,',');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-else
-    times_pushed = 0;
-end
+newKey = '1';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
 
 
 % --- Executes on button press in pushbutton14.
@@ -436,45 +302,20 @@ function pushbutton14_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
 if strcmp(string, 'Enter Text')
-    string = []
+    string = [];
 end
-global times_pushed
-global last_pushed
-global cap
-times_pushed = times_pushed + 1;
+global keySequence
+global newKey
 
-if times_pushed == 1
-    if cap == 0
-        newstr = strcat(string,'a');
-    else
-        newstr = strcat(string,'A');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('a');
-elseif times_pushed == 2 && strcmp(last_pushed,'a') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'b');
-    else
-        newstr = strcat(string,'B');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('b');
-elseif times_pushed == 3 && strcmp(last_pushed,'b') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'c');
-    else
-        newstr = strcat(string,'C');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    times_pushed = 0;
-else
-    times_pushed = 0;
-end
+newKey = '2';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
 
 
 % --- Executes on button press in pushbutton15.
@@ -484,53 +325,17 @@ function pushbutton15_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
 if strcmp(string, 'Enter Text')
-    string = []
+    string = [];
 end
-global times_pushed
-global last_pushed
-global cap
-times_pushed = times_pushed + 1;
+global keySequence
+global newKey
 
-if times_pushed == 1
-    if cap == 0
-        newstr = strcat(string,'e');
-    else
-        newstr = strcat(string,'E');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('e');
-elseif times_pushed == 2 && strcmp(last_pushed,'e') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'f');
-    else
-        newstr = strcat(string,'F');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('f');
-elseif times_pushed == 3 && strcmp(last_pushed,'f') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'g');
-    else
-        newstr = strcat(string,'G');
-    end
-    set(handles.text2,'String',newstr)
-    last_pushed = ('f');
-    disp(newstr)
-elseif times_pushed == 4 && strcmp(last_pushed,'g') == 1;
-    string = string(1:end-1);
-    if cap == 0
-        newstr = strcat(string,'f');
-    else
-        newstr = strcat(string,'F');
-    end
-    set(handles.text2,'String',newstr)
-    disp(newstr)
-    last_pushed = ('f');
-    times_pushed = 0;
-else
-    times_pushed = 0;
-end
+newKey = '3';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
