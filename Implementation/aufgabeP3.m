@@ -6,10 +6,10 @@ close all;
 clc;
 
 % Load data
-load 'data.mat';
+load 'data/dataEnglish.mat';
 
 % Define example key sequence.
-keySequence = '2345';
+keySequence = '234';
 
 % Compute length of key sequence
 nKeySequence = length(keySequence);
@@ -25,33 +25,29 @@ for i = 1:length(keySequence)
     
 end
 
-symbolSets
-
-% Generate all possible combinations of output symbols, given the sequence
-% above
-% combinations = char(combvec(char(symbolSets(1)), char(symbolSets(2)), ...
-%   char(symbolSets(3)))) %, char(symbolSets(4))
-
 % Declare an empty tree structure
 symbolTree = tree('');
 
-indices = 1;
-
+% Initialise array that stores indices of previous nodes
+previousIndices = 1;
+nodeIndices = {0 0}';
 
 for i = 1 : nKeySequence
     
+    % Extract current symbolSet and compute length
     currentSymbolSet = char(symbolSets(i));
     nCurrentSymbolSet = length(currentSymbolSet);
     
+    % Store ne
     indicesBuffer = [];
     
-    for k = 1 : length(indices)
+    for k = 1 : length(previousIndices)
         
         indicesAdded = zeros(size(currentSymbolSet));
         
         for j = 1 : nCurrentSymbolSet
             
-            [symbolTree, indicesAdded(j)] = symbolTree.addnode(indices(k), strcat(symbolTree.get(indices(k)), currentSymbolSet(j)));
+            [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndices(k), strcat(symbolTree.get(previousIndices(k)), currentSymbolSet(j)));
             
         end
         
@@ -59,17 +55,18 @@ for i = 1 : nKeySequence
         
     end
     
-    indices = indicesBuffer;
+    % Store indices of previous nodes
+    previousIndices = indicesBuffer;
     
-    % Display tree structure
-    % disp(symbolTree.tostring)
-    
-    % fprintf('\n\nPress any key to continue ...\n\n');
+    % Store indices of each level of depth
+    nodeIndices{i} = previousIndices;
     
 end
 
 % Display tree structure
 disp(symbolTree.tostring)
 
-
-symbolTree
+% Display number of node of the tree
+fprintf("\n\n");
+fprintf("Tree depth: %10.0d\n", symbolTree.depth);
+fprintf("Number of nodes: %5.0d\n", nnodes(symbolTree));
