@@ -26,6 +26,6 @@ keySequence = [];
 newKey = [];
 
 % Instantiate keyboard object and store handle
-keyFig = t9key;
+keyFig = gui;
 
 
