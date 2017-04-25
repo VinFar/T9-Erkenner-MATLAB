@@ -11,6 +11,7 @@ global symbolTree;
 global dictionary;
 global previousIndices;
 global nodeIndices;
+global cap;
 
 % Load data
 load 'data/dataEnglish.mat';

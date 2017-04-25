@@ -3,6 +3,7 @@ function appendToTree(newKey)
 global previousIndices;
 global symbolTree;
 global dictionary;
+global cap;
 
 % Extract current symbolSet and compute length
 currentSymbolSet = dictionary(newKey);
@@ -17,7 +18,13 @@ for k = 1 : length(previousIndices)
     
     for j = 1 : nCurrentSymbolSet
         
-        [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndices(k), strcat(symbolTree.get(previousIndices(k)), currentSymbolSet(j)));
+        if cap == 0
+            [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndices(k), strcat(symbolTree.get(previousIndices(k)), currentSymbolSet(j)));
+        end
+        
+        if cap == 1
+            [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndices(k), strcat(symbolTree.get(previousIndices(k)), upper(currentSymbolSet(j))));
+        end
         
     end
     
