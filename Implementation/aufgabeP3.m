@@ -9,7 +9,7 @@ clc;
 load 'data/dataEnglish.mat';
 
 % Define example key sequence.
-keySequence = '234';
+keySequence = '2345';
 
 % Compute length of key sequence
 nKeySequence = length(keySequence);

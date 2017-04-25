@@ -8,7 +8,7 @@ clc;
 
 
 % Select language: 'German' or 'English'
-language = 'German';
+language = 'English';
 
 % Specify filename for respective text corpus obtained from
 % http://wortschatz.uni-leipzig.de/en/download
@@ -25,7 +25,7 @@ switch language
 end
 
 % Define possible input symbols
-keySet = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}'; %, '*', '#'}';
+keySet = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '#'}'; %, '*'}';
 
 % Define possible output symbols
 valueSet = { ...
@@ -39,8 +39,8 @@ valueSet = { ...
     '7pqrs' ...
     '8tuv' ...
     '9wxyz' ...
-    % "+" ...             % switch between upper and lowercase
-    % "_" ...             % symbol for a space
+    ... %'+' ...            % switch between upper and lowercase
+    '_' ...             % symbol for a space
     }';
 
 % Compose entire alphabet
