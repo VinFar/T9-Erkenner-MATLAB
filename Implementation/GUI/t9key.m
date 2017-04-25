@@ -223,6 +223,22 @@ function pushbutton7_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+string = get(handles.text2,'String');
+if strcmp(string, 'Enter Text')
+    string = [];
+end
+global keySequence
+global newKey
+
+newKey = '#';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
 
 
 % --- Executes on button press in pushbutton8.
@@ -231,8 +247,23 @@ function pushbutton8_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 string = get(handles.text2,'String');
-string = horzcat(string,'_' );
-set(handles.text2,'String',string)
+if strcmp(string, 'Enter Text')
+    string = [];
+end
+global keySequence
+global newKey
+
+newKey = '0';
+keySequence = [keySequence, newKey];
+newstr = strcat(string, newKey);
+
+set(handles.text2, 'String', newstr)
+
+appendToTree(newKey);
+
+disp(keySequence)
+
+
 
 % --- Executes on button press in pushbutton9.
 function pushbutton9_Callback(hObject, eventdata, handles)
