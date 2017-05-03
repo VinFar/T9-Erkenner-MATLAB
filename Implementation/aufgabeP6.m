@@ -9,20 +9,19 @@ clc;
 global corpus
 
 % Load corpus
-load('englishClean.mat');
+load('germanClean.mat');
+
+sequence = 'wenn_ich_nicht_fest_darauf_rechnete'
+%sequence = 'in_steinfurt_regnet_es_fast_nie'
+%sequence = '_dies_ist_die_berechnete_wahrscheinlichkeit_eines_satzes_der_genau_hundert_sinnlose_zeichen_umfasst_'
 
 
-pProductGet = pSequence('get')
+pProductLn = pSequence(sequence)
+pProduct = exp(-pProductLn)
 
-pProductTruncGet = pSequenceTrunc('get')
+pProductTruncLn = pSequenceTrunc(sequence)
+pProductTrunc = exp(-pProductTruncLn)
 
-pRelFreqGet = length(strfind(corpus, 'get')) / corpusLength
-
-pProductSteinfurt = pSequence('Did it ever rain in Steinfurt?')
-
-pProductTruncSteinfurt = pSequenceTrunc('Did it ever rain in Steinfurt?')
-
-pRelFreqSteinfurt = length(strfind(corpus, 'Did it ever rain in Steinfurt?')) / corpusLength
-
+pRelFreq = length(strfind(corpus, sequence)) / corpusLength
 
 
