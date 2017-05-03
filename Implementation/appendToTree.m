@@ -18,13 +18,32 @@ for k = 1 : length(previousIndices)
     
     for j = 1 : nCurrentSymbolSet
         
+        % Get cell array attached to previous node
+        previousNodeContent = symbolTree.get(previousIndices(k));
+        
+        % Extract character sequence and probability
+        previousChars = previousNodeContent{1, 1};
+        previousP = previousNodeContent{1, 2};
+        
+        % Current character
         if cap == 0
-            [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndices(k), strcat(symbolTree.get(previousIndices(k)), currentSymbolSet(j)));
+            newChar = currentSymbolSet(j);
+        elseif cap == 1
+            newChar = upper(currentSymbolSet(j));
         end
         
-        if cap == 1
-            [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndices(k), strcat(symbolTree.get(previousIndices(k)), upper(currentSymbolSet(j))));
-        end
+        % Character vector containing all previous and the current symbol
+        newChars = strcat(previousChars, newChar);
+        
+        % Conditional probability of the current symbol given the
+        % previous symbols
+        p = pConditional(newChar, previousChars);
+        
+        % Combine both node properties in a cell array
+        nodeContent = {newChars, p};
+        
+        % Add node to tree
+        [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndices(k), nodeContent);
         
     end
     

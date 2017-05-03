@@ -12,12 +12,13 @@ global dictionary;
 global previousIndices;
 global nodeIndices;
 global cap;
+global corpus
 
-% Load data
-load 'data/dataEnglish.mat';
+% Load corpus
+load('englishClean.mat');
 
 % Declare an empty tree structure
-symbolTree = tree('');
+symbolTree = tree({'_', 1});
 
 % Initialise arrays
 previousIndices = 1;
