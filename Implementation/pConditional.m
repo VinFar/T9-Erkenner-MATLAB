@@ -1,6 +1,7 @@
 function p = pConditional( y, x )
-%PCOND Summary of this function goes here
-%   Detailed explanation goes here
+%pConditional computes the conditional probability of the character y given
+%the sequence of charachters x
+
 global corpus
 
 % Compute conditional probability

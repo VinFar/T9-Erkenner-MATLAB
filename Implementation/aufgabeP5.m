@@ -1,4 +1,4 @@
-% *** DATA PREPROCESSING ***
+% *** BUCHSTABENWAHRSCHEINLICHKEITEN ***
 
 
 % Clear workspace and console, close all figures
