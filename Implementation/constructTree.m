@@ -18,7 +18,7 @@ global corpus
 load('englishClean.mat');
 
 % Declare an empty tree structure
-symbolTree = tree({'_', 1});
+symbolTree = tree({'_', 1, length(strfind(corpus, '_'))});
 
 % Initialise arrays
 previousIndices = 1;
