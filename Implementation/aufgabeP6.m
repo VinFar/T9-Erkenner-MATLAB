@@ -14,9 +14,13 @@ load('englishClean.mat');
 
 pProductGet = pSequence('get')
 
+pProductTruncGet = pSequenceTrunc('get')
+
 pRelFreqGet = length(strfind(corpus, 'get')) / corpusLength
 
 pProductSteinfurt = pSequence('Did it ever rain in Steinfurt?')
+
+pProductTruncSteinfurt = pSequenceTrunc('Did it ever rain in Steinfurt?')
 
 pRelFreqSteinfurt = length(strfind(corpus, 'Did it ever rain in Steinfurt?')) / corpusLength
 
