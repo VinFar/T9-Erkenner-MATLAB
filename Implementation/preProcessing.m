@@ -41,33 +41,32 @@ nKeys = dictionary.Count;
 % Read text corpus
 corpus = fileread(fileName);
 
-% Remove header
-%k = strfind(corpus, 'PREFACE');
-%corpus = corpus(k:end);
-
 % Convert to lowercase
 corpus = lower(corpus);
 
+% Repace umlauts
+corpus = strrep(corpus, sprintf('ä'),'ae');
+corpus = strrep(corpus, sprintf('ü'),'ue');
+corpus = strrep(corpus, sprintf('ö'),'oe');
+corpus = strrep(corpus, sprintf('ß'),'ss');
+
+% Replace dashes
+corpus = strrep(corpus, '-', ' ');
+
 % Replace newlines
-%corpus = corpus(corpus ~= newline);
 corpus = strrep(corpus, newline, ' ');
 
 % Replace carriage returns
-%corpus = corpus(corpus ~= sprintf('\r'));
 corpus = strrep(corpus, sprintf('\r'), ' ');
 
 % Replace tabs
-%corpus = corpus(corpus ~= sprintf('\t'));
 corpus = strrep(corpus, sprintf('\t'), ' ');
 
 % Remove multiple spaces
-corpus = regexprep(corpus,' +',' ');
+corpus = regexprep(corpus, ' +', ' ');
 
 % Replace spaces with underscores
 corpus = strrep(corpus, ' ', '_');
-
-% Replace dashes with underscores
-corpus = strrep(corpus, '-', '_');
 
 % Compute length of corpus
 corpusLength = length(corpus);
@@ -83,15 +82,16 @@ fprintf(fileID, corpus);
 % respective character.
 corpusInputSym = corpus;
 
-for i = 1 : corpusLength
+% Iterate over all keys
+for j = 1 : nKeys
     
-    for j = 1 : nKeys
-        
-        if ismember(corpusInputSym(i), char(dictionary(keySet{j})))
-            corpusInputSym(i) = keys(j);
-        end
-        
-    end
+    currentKey = keySet{j};
+    
+    % Extract corresponding symbols
+    currentSymbols = dictionary(currentKey);
+    
+    % Reverse map symbols to corresponding keys
+    corpusInputSymbol(ismember(corpus, currentSymbols)) = currentKey;
     
 end
 
