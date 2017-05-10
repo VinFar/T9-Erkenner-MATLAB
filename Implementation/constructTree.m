@@ -1,4 +1,4 @@
-% *** DATA PREPROCESSING ***
+% *** CONSTRUCT TREE ***
 
 % Clear workspace and console, close all figures
 clear all;
