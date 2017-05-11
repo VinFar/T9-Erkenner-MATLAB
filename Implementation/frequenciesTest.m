@@ -14,15 +14,19 @@ load('englishProbabilityTree.mat')
 fprintf('\n\n')
 disp(horzcat(charTree.tostring, freqTree.tostring))
 
-sequence = 'll';
+sequence = 'hallo';
+%sequence = 'in_steinfurt_regnet_es_fast_nie'
 
-frequency = getFrequency(probTree, sequence, 1)
+[frequency prevFrequency] = getFrequency(probTree, sequence, 1)
 
 relFrequency = pSequenceTree(probTree, sequence)
 
+relFrequencyRec = pSequenceTreeRec( probTree, sequence, 1)
+
 pCond = pConditionalTree('o', 'hall', probTree)
 
-[frequency prevFrequency] = getFrequency(probTree, 'hallo', 1)
+
+
 
 
 

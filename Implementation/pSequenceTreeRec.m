@@ -1,0 +1,48 @@
+function p = pSequenceTreeRec( probTree, sequence, currentIndex)
+% pSequence computes the negative natural logarithm of the probability
+% of a sequence of characters given a text corpus
+
+n = length(sequence);
+
+% Get indices of all children of the first node
+childrenIndices = getchildren(probTree, currentIndex);
+
+% Initialise vector of characters that holds all children
+childrenChar = '';
+
+% Get characters
+for i = childrenIndices
+    childrenContent = probTree.get(i);
+    childrenChar = [childrenChar, childrenContent{1}];
+end
+
+if ~any(childrenChar == sequence(1))
+    
+    frequency = 0;
+    freqPrevNode = probTree.get(1);
+    p = 0;
+    
+elseif any(childrenChar == sequence(1))
+    
+    currentIndex = childrenIndices(childrenChar == sequence(1));
+    
+    nodeContent = probTree.get(currentIndex);
+    frequency = nodeContent{2};
+    contentPrevNode = probTree.get(getparent(probTree, currentIndex));
+    freqPrevNode = contentPrevNode{2};
+    
+    p = frequency / freqPrevNode;
+    
+    if n == 1
+        
+        return
+        
+    end
+    
+    p = p * pSequenceTreeRec(probTree, sequence (2:n), currentIndex);
+    
+end
+
+end
+
+
