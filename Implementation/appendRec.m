@@ -38,8 +38,6 @@ end
 if any(children == sample(1))
     
     currentIndex = childrenIndices(children == sample(1));
-    oldChars = charTree.get(currentIndex);
-    charTree = charTree.set(currentIndex, [oldChars, oldChars(1)]);
     
     oldFreq = freqTree.get(currentIndex);
     freqTree = freqTree.set(currentIndex, oldFreq + 1);

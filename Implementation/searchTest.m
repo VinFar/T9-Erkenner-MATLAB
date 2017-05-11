@@ -5,8 +5,6 @@ clear all;
 close all;
 clc;
 
-
-
 pauseFor = 0;
 dispTree = false;
 
@@ -14,12 +12,12 @@ load('englishProbabilityTree.mat')
 
 % Display tree structure
 fprintf('\n\n')
-disp(probTree.tostring)
+disp(horzcat(charTree.tostring, freqTree.tostring))
 
 
-sequence = '_ja_gut';
-sequence = 'ut_das_';
-sequence = 'hal';
+%sequence = '_ja_gut';
+%sequence = 'ut_das_';
+sequence = 'l';
 
-content = searchTree(probTree, sequence, 1, pauseFor, dispTree )
+content = getFrequency(charTree, freqTree, sequence, 1, pauseFor, dispTree )
 
