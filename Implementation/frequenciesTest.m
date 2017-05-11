@@ -21,7 +21,7 @@ sequence = 'hallo';
 
 relFrequency = pSequenceTree(probTree, sequence)
 
-relFrequencyRec = pSequenceTreeRec( probTree, sequence, 1)
+relFrequencyRec = exp(-pSequenceTreeRec( probTree, sequence, 1))
 
 pCond = pConditionalTree('o', 'hall', probTree)
 

@@ -20,7 +20,7 @@ if ~any(childrenChar == sequence(1))
     
     frequency = 0;
     freqPrevNode = probTree.get(1);
-    p = 0;
+    p = Inf;
     
 elseif any(childrenChar == sequence(1))
     
@@ -31,7 +31,7 @@ elseif any(childrenChar == sequence(1))
     contentPrevNode = probTree.get(getparent(probTree, currentIndex));
     freqPrevNode = contentPrevNode{2};
     
-    p = frequency / freqPrevNode;
+    p = - log(frequency / freqPrevNode);
     
     if n == 1
         
@@ -39,7 +39,7 @@ elseif any(childrenChar == sequence(1))
         
     end
     
-    p = p * pSequenceTreeRec(probTree, sequence (2:n), currentIndex);
+    p = p - pSequenceTreeRec(probTree, sequence (2:n), currentIndex);
     
 end
 
