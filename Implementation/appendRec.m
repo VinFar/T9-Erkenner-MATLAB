@@ -1,18 +1,18 @@
-function [ probTree ] = appendRec( probTree, sample, currentIndex, pauseFor, dispTree )
+function [charTree, freqTree] = appendRec(charTree, freqTree, sample, currentIndex, pauseFor, dispTree)
 %APPENDREC Recursively append to tree
 %   Detailed explanation goes here
 
-n = length(sample);
+sampleLength = length(sample);
 
 % Get indices of all children of the first node
-childrenIndices = getchildren(probTree, currentIndex);
+childrenIndices = getchildren(charTree, currentIndex);
 
 % Initialise vector of characters that holds all children
 children = '';
 
 % Get characters
 for i = childrenIndices
-    childrenChars = probTree.get(i);
+    childrenChars = charTree.get(i);
     children = [children, childrenChars(1)];
 end
 
@@ -20,13 +20,15 @@ end
 % of the tree append the entire sample to the first node
 if ~any(children == sample(1))
     
-    newIndex = currentIndex;
-    for j = 1:n
-        [probTree, newIndex] = probTree.addnode(newIndex, sample(j));
+    newIndexChar = currentIndex;
+    newIndexFreq = currentIndex;
+    for j = 1:sampleLength
+        [charTree, newIndexChar] = charTree.addnode(newIndexChar, sample(j));
+        [freqTree, newIndexFreq] = freqTree.addnode(newIndexFreq, 1);
         
         if dispTree
             fprintf('\n\n');
-            disp(probTree.tostring)
+            disp(charTree.tostring)
             pause(pauseFor)
         end
     end
@@ -36,19 +38,22 @@ end
 if any(children == sample(1))
     
     currentIndex = childrenIndices(children == sample(1));
-    oldChars = probTree.get(currentIndex);
-    probTree = probTree.set(currentIndex, [oldChars, oldChars(1)]);
+    oldChars = charTree.get(currentIndex);
+    charTree = charTree.set(currentIndex, [oldChars, oldChars(1)]);
+    
+    oldFreq = freqTree.get(currentIndex);
+    freqTree = freqTree.set(currentIndex, oldFreq + 1);
     
     if dispTree
         fprintf('\n\n');
-        disp(probTree.tostring)
+        disp(charTree.tostring)
         pause(pauseFor)
     end
     
-    if n > 1
+    if sampleLength > 1
         
-        probTree = appendRec(probTree, sample(2:end), currentIndex, pauseFor, dispTree);
-        
+        [charTree, freqTree] = appendRec(charTree, freqTree, sample(2:end), currentIndex, pauseFor, dispTree);
+    
     end
     
 end
