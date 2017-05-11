@@ -1,4 +1,4 @@
-function [ frequency ] = getFrequency( probTree, sequence, currentIndex)
+function [ frequency, freqPrevNode] = getFrequency( probTree, sequence, currentIndex)
 %SEARCHTREE Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -19,6 +19,7 @@ end
 if ~any(childrenChar == sequence(1))
     
     frequency = 0;
+    freqPrevNode = probTree.get(1);
     
 elseif any(childrenChar == sequence(1))
     
@@ -28,11 +29,13 @@ elseif any(childrenChar == sequence(1))
         
          nodeContent = probTree.get(currentIndex);
          frequency = nodeContent{2};
+         contentPrevNode = probTree.get(getparent(probTree, currentIndex));
+         freqPrevNode = contentPrevNode{2};
         return
         
     end
     
-    frequency = getFrequency(probTree, sequence (2:n), currentIndex);
+    [frequency, freqPrevNode] = getFrequency(probTree, sequence (2:n), currentIndex);
     
 end
 
