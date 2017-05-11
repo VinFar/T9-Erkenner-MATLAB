@@ -1,4 +1,4 @@
-function [ content ] = getFrequency( probTree, sequence, currentIndex, pauseFor, dispTree )
+function [ frequency ] = getFrequency( probTree, sequence, currentIndex)
 %SEARCHTREE Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -8,30 +8,31 @@ n = length(sequence);
 childrenIndices = getchildren(probTree, currentIndex);
 
 % Initialise vector of characters that holds all children
-children = '';
+childrenChar = '';
 
 % Get characters
 for i = childrenIndices
-    childrenChars = probTree.get(i);
-    children = [children, childrenChars(1)];
+    childrenContent = probTree.get(i);
+    childrenChar = [childrenChar, childrenContent{1}];
 end
 
-if ~any(children == sequence(1))
+if ~any(childrenChar == sequence(1))
     
-    content = '$';
+    frequency = 0;
     
-elseif any(children == sequence(1))
+elseif any(childrenChar == sequence(1))
     
-    currentIndex = childrenIndices(children == sequence(1));
+    currentIndex = childrenIndices(childrenChar == sequence(1));
     
     if n == 1
         
-        content = freqTree.get(currentIndex);
+         nodeContent = probTree.get(currentIndex);
+         frequency = nodeContent{2};
         return
         
     end
     
-    content = getFrequency(charTree, freqTree, sequence (2:n), currentIndex, pauseFor, dispTree );
+    frequency = getFrequency(probTree, sequence (2:n), currentIndex);
     
 end
 

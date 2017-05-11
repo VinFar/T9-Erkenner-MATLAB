@@ -45,7 +45,7 @@ if any(children == sample(1))
     freqTree = freqTree.set(currentIndex, oldFreq + 1);
     
     oldContent = probTree.get(currentIndex);
-    probTree = probTree.set(currentIndex, {oldContent(1), oldContent{2} + 1});
+    probTree = probTree.set(currentIndex, {oldContent{1}, oldContent{2} + 1});
     
     if dispTree
         fprintf('\n\n');

@@ -14,10 +14,7 @@ load('englishProbabilityTree.mat')
 fprintf('\n\n')
 disp(horzcat(charTree.tostring, freqTree.tostring))
 
+sequence = 'hallo';
 
-%sequence = '_ja_gut';
-%sequence = 'ut_das_';
-sequence = 'l';
-
-content = getFrequency(charTree, freqTree, sequence, 1, pauseFor, dispTree )
+frequency = getFrequency(probTree, sequence, 1)
 
