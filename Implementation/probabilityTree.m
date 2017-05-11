@@ -28,7 +28,7 @@ dispTree = false;
 % Initialise tree
 charTree = tree('ROOT');
 freqTree = tree(length(corpus));
-probTree = tree(length(corpus));
+probTree = tree({'_', length(corpus)});
 
 % Iterate over entire corpus
 for index = 1 : length(corpus) - depth

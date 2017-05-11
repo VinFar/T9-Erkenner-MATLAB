@@ -19,7 +19,8 @@ end
 if ~any(childrenChar == sequence(1))
     
     frequency = 0;
-    freqPrevNode = probTree.get(1);
+    contentPrevNode = probTree.get(1);
+    freqPrevNode = contentPrevNode{2};
     
 elseif any(childrenChar == sequence(1))
     
@@ -27,10 +28,10 @@ elseif any(childrenChar == sequence(1))
     
     if n == 1
         
-         nodeContent = probTree.get(currentIndex);
-         frequency = nodeContent{2};
-         contentPrevNode = probTree.get(getparent(probTree, currentIndex));
-         freqPrevNode = contentPrevNode{2};
+        nodeContent = probTree.get(currentIndex);
+        frequency = nodeContent{2};
+        contentPrevNode = probTree.get(getparent(probTree, currentIndex));
+        freqPrevNode = contentPrevNode{2};
         return
         
     end
