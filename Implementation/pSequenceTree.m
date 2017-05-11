@@ -1,4 +1,4 @@
-function p = pSequence(probTree, sequence)
+function p = pSequenceTree(probTree, sequence)
 % pSequence computes the negative natural logarithm of the probability 
 % of a sequence of characters given a text corpus
 
