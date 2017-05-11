@@ -5,11 +5,22 @@ clear all;
 close all;
 clc;
 
-corpus = 'das_ist_langweilig_ja_das_ist_es_und_ich_will_ins_bett';
-n = 6;
 
+% Specify filename
+fileName = 'english';
+
+% Load corpus
+%load([fileName, 'Clean.mat']);
+
+%corpus = 'das_ist_langweilig_ja_das_ist_es_und_ich_will_ins_bett';
+corpus = 'das_geht_ja_gut_das_geht_ja_schlecht';
+
+% Tree depth
+n = 7;
+
+% Debug
 pauseFor = 1;
-dispTree = true;
+dispTree = false;
 
 % Initialise tree
 probTree = tree('ROOT');
@@ -36,4 +47,8 @@ end
 % Display tree structure
 fprintf('\n\n')
 disp(probTree.tostring)
+
+% Save probability tree to file
+save(['../Corpora/', fileName, 'ProbabilityTree'], 'probTree');
+
 
