@@ -39,7 +39,7 @@ elseif any(childrenChar == sequence(1))
         
     end
     
-    p = p - pSequenceTreeRec(probTree, sequence (2:n), currentIndex);
+    p = p + pSequenceTreeRec(probTree, sequence (2:n), currentIndex);
     
 end
 
