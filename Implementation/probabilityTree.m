@@ -26,8 +26,9 @@ pauseFor = 1;
 dispTree = false;
 
 % Initialise tree
-freqTree = tree('ROOT');
 charTree = tree('ROOT');
+freqTree = tree(length(corpus));
+probTree = tree(length(corpus));
 
 % Iterate over entire corpus
 for index = 1 : length(corpus) - depth
@@ -46,7 +47,7 @@ for index = 1 : length(corpus) - depth
     sample = corpus(index:index+depth-1);
     
     % Append sample to tree
-    [charTree, freqTree] = appendRec(charTree, freqTree, sample, 1, pauseFor, dispTree);
+    [charTree, freqTree, probTree] = appendRec(charTree, freqTree, probTree, sample, 1, pauseFor, dispTree);
 end
 
 % Display tree structure
@@ -54,5 +55,5 @@ fprintf('\n\n')
 disp(horzcat(charTree.tostring, freqTree.tostring))
 
 % Save probability tree to file
-save(['../Corpora/', fileName, 'ProbabilityTree'], 'charTree', 'freqTree');
+save(['../Corpora/', fileName, 'ProbabilityTree'], 'charTree', 'freqTree', 'probTree');
 
