@@ -3,7 +3,7 @@ function p = pConditionalTree( y, x, probTree)
 %the sequence of charachters x
 
 % Compute conditional probability
-[frequencyXY frequencyX] = getFrequency(probTree, [x, y], 1);
+[frequencyXY, frequencyX] = getFrequency(probTree, [x, y], 1);
 
 p =  frequencyXY / frequencyX;
 

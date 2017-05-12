@@ -4,53 +4,35 @@ function p = pSequenceTreeRecTrunc( probTree, sequence, currentIndex, truncAfter
 
 n = length(sequence);
 
-% Get indices of all children of the first node
-childrenIndices = getchildren(probTree, currentIndex);
-
-% Initialise vector of characters that holds all children
-childrenChar = '';
-
-% Get characters
-for i = childrenIndices
-    childrenContent = probTree.get(i);
-    childrenChar = [childrenChar, childrenContent{1}];
-end
-
-if ~any(childrenChar == sequence(1))
+% If length of sequence = 1 only one character exists and there is no
+% condition
+if n == 1
     
-    frequency = 0;
-    freqPrevNode = probTree.get(1);
-    p = Inf;
+    newChar = sequence(1);
+    condition = '';
     
-elseif any(childrenChar == sequence(1))
+    % Else if the sequence has at least two elements and the number of
+    % elements in the condition + 1 is larger than the sequence
+elseif n - truncAfter - 1 < 1
     
-    if n <= truncAfter + 1
-        
-        currentIndex = childrenIndices(childrenChar == sequence(1));
-        
-        nodeContent = probTree.get(currentIndex);
-        frequency = nodeContent{2};
-        contentPrevNode = probTree.get(getparent(probTree, currentIndex));
-        freqPrevNode = contentPrevNode{2};
-        
-        p = - log(frequency / freqPrevNode);
-        
-        if n == 1
-            
-            return
-            
-        end
-        
-    else
-        
-        p = 0;
-        
-    end
+    newChar = sequence(end);
+    condition = sequence(1:end-1);
     
-    p = p + pSequenceTreeRec(probTree, sequence (2:n), currentIndex);
+else
+    
+    newChar = sequence(end);
+    condition = sequence(end-truncAfter-1:end-1);
     
 end
 
+p = - log(pConditionalTree(newChar, condition, probTree));
+
+if n == 1
+    
+    return
+    
 end
 
+p = p + pSequenceTreeRec(probTree, sequence(1:end-1), currentIndex);
 
+end
