@@ -1,59 +1,50 @@
-function appendToTree(newKey)
+function symbolTree = appendToTree(newKey, symbolTree, probTree, nGram)
+%appenToTree appends all possible output symbols corresponding to the 
+% character newKey to the symbolTree
 
 global previousIndices;
-global symbolTree;
 global dictionary;
-global corpus;
 global cap;
 
-% Extract current symbolSet and compute length
+% Extract current symbol set
 currentSymbolSet = dictionary(newKey);
-nCurrentSymbolSet = length(currentSymbolSet);
 
-% Store new indices
+% Initialise buffer that holds indices
 indicesBuffer = [];
 
-for k = 1 : length(previousIndices)
+for previousIndex = previousIndices
     
+    % Initialise buffer that holds newly added indices
     indicesAdded = zeros(size(currentSymbolSet));
     
-    for j = 1 : nCurrentSymbolSet
+    for j = 1:length(currentSymbolSet)
+        
+        currentSymbol = currentSymbolSet(j);
         
         % Get cell array attached to previous node
-        previousNodeContent = symbolTree.get(previousIndices(k));
+        previousNodeContent = symbolTree.get(previousIndex);
         
         % Extract character sequence and probability
         previousChars = previousNodeContent{1, 1};
-        previousP = previousNodeContent{1, 2};
-        previousCount = previousNodeContent{1, 3};
         
-        % Current character
+        % Capitalise
         if cap == 0
-            newChar = currentSymbolSet(j);
+            newChar = currentSymbol;
         elseif cap == 1
-            newChar = upper(currentSymbolSet(j));
+            newChar = upper(currentSymbol);
         end
         
         % Character vector containing all previous and the current symbol
         newChars = strcat(previousChars, newChar);
         
-        % Count of the number of occurences of the new sequence
-        countNewChars = length(strfind(corpus, newChars));
-        
-        % Conditional probability of the current symbol given the
-        % previous symbols
-        p = countNewChars / previousCount;
-        
-        % If denominator is zero the result is NaN in which case we will return 0.
-        if isnan(p)
-            p = 0;
-        end
+        % Compute probability of the current symbol using a n-gram
+        p = exp(-pSequence(probTree, newChars, 1, nGram));
         
         % Combine both node properties in a cell array
-        nodeContent = {newChars, p, countNewChars};
+        nodeContent = {newChars, p};
         
         % Add node to tree
-        [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndices(k), nodeContent);
+        [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndex, nodeContent);
         
     end
     
@@ -63,8 +54,5 @@ end
 
 % Store indices of previous nodes
 previousIndices = indicesBuffer;
-
-% Display tree structure
-disp(symbolTree.tostring)
 
 end

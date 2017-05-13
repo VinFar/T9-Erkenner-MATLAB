@@ -1,45 +1,57 @@
-function [ frequency, freqPrevNode] = getFrequency( probTree, sequence, currentIndex)
-%SEARCHTREE Summary of this function goes here
-%   Detailed explanation goes here
-
-n = length(sequence);
+function [ frequency, frequencyPrarentNode] = getFrequency(probTree, ...
+    sequence, currentIndex)
+% GETFREQUENCY returns the frequence of a sequence of characters by
+% searching a given probability tree
+%   freqParentNode is the frequency stored at the parent node and represents
+%   the frequency of occurence of the sequence shortened by one character
 
 % Get indices of all children of the first node
 childrenIndices = getchildren(probTree, currentIndex);
 
 % Initialise vector of characters that holds all children
-childrenChar = '';
+children = '';
 
 % Get characters
-for i = childrenIndices
-    childrenContent = probTree.get(i);
-    childrenChar = [childrenChar, childrenContent{1}];
+for child = childrenIndices
+    childContent = probTree.get(child);
+    children = [children, childContent{1}];
 end
 
-if ~any(childrenChar == sequence(1))
+% Check whether the first character of the sample exists on the current
+% level of the tree
+characterExists = any(children == sequence(1));
+
+if ~characterExists
     
     frequency = 0;
-    contentPrevNode = probTree.get(1);
-    freqPrevNode = contentPrevNode{2};
     
-elseif any(childrenChar == sequence(1))
+    % Set frequency to the number of characters used to construct the tree.
+    % There id no specific reason so far. This could by any other number <= 0.
+    contentParentNode = probTree.get(1);
+    frequencyPrarentNode = contentParentNode{2};
     
-    currentIndex = childrenIndices(childrenChar == sequence(1));
+elseif characterExists
     
-    if n == 1
+    % Get the index of the existing character
+    currentIndex = childrenIndices(children == sequence(1));
+    
+    if length(sequence) == 1
         
+        % Get node content and extract frequency
         nodeContent = probTree.get(currentIndex);
         frequency = nodeContent{2};
-        contentPrevNode = probTree.get(getparent(probTree, currentIndex));
-        freqPrevNode = contentPrevNode{2};
+        
+        % Get parent node content and extract frequency
+        contentParentNode = probTree.get(getparent(probTree, currentIndex));
+        frequencyPrarentNode = contentParentNode{2};
         return
         
     end
     
-    [frequency, freqPrevNode] = getFrequency(probTree, sequence (2:n), currentIndex);
+    % Call getFrequency with the sequence shortened by the first character
+    [frequency, frequencyPrarentNode] = getFrequency(probTree, ...
+        sequence (2:end), currentIndex);
     
 end
 
 end
-
-

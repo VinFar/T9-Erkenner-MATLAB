@@ -82,6 +82,9 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '1';
 keySequence = [keySequence, newKey];
@@ -96,7 +99,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbutton0.
@@ -106,6 +109,9 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '2';
 keySequence = [keySequence, newKey];
@@ -120,7 +126,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbuttonHash.
@@ -130,6 +136,9 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '3';
 keySequence = [keySequence, newKey];
@@ -144,7 +153,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbuttonCaps.
@@ -154,6 +163,9 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '4';
 keySequence = [keySequence, newKey];
@@ -168,7 +180,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbutton0.
@@ -178,6 +190,9 @@ function pushbutton5_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '5';
 keySequence = [keySequence, newKey];
@@ -192,7 +207,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbuttonHash.
@@ -202,6 +217,9 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '6';
 keySequence = [keySequence, newKey];
@@ -216,7 +234,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbuttonHash.
@@ -226,6 +244,9 @@ function pushbutton7_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '7';
 keySequence = [keySequence, newKey];
@@ -240,7 +261,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbuttonHash.
@@ -250,6 +271,9 @@ function pushbutton8_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '8';
 keySequence = [keySequence, newKey];
@@ -264,7 +288,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbuttonHash.
@@ -274,6 +298,9 @@ function pushbutton9_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '9';
 keySequence = [keySequence, newKey];
@@ -288,7 +315,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbuttonHash.
@@ -298,6 +325,9 @@ function pushbutton0_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '0';
 keySequence = [keySequence, newKey];
@@ -312,7 +342,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbuttonHash.
@@ -322,6 +352,9 @@ function pushbuttonHash_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global keySequence
 global newKey
+global symbolTree
+global probTree
+global nGram
 
 newKey = '#';
 keySequence = [keySequence, newKey];
@@ -336,7 +369,7 @@ newstr = strcat(string, newKey);
 
 set(handles.display, 'String', newstr)
 
-appendToTree(newKey);
+symbolTree = appendToTree(newKey, symbolTree, probTree, nGram);
 
 
 % --- Executes on button press in pushbutton9.

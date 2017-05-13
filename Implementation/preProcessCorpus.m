@@ -1,4 +1,6 @@
-% *** DATA PREPROCESSING ***
+% *** preProcessCorpus.m ***
+
+% Preprocess text corpus and save it at .mat-file
 
 
 % Clear workspace and console, close all figures
@@ -8,13 +10,13 @@ clc;
 
 
 % Specify filename
-fileName = 'english.txt';
+fileName = 'german.txt';
 
 % Define possible input symbols
-keySet = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '#'}'; %, '*'}';
+keySet = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '#'}';
 
 % Define possible output symbols
-valueSet = { ...
+symbolSet = { ...
     '0' ...
     '1.,' ...
     '2abc' ...
@@ -25,15 +27,15 @@ valueSet = { ...
     '7pqrs' ...
     '8tuv' ...
     '9wxyz' ...
-    '_' ...          % symbol for a space
+    '_' ... % symbol for a space
     }';
 
-% Compose entire alphabet
-alphabet = char(join(string(valueSet), ''));
+% Compose entire key set and alphabet
+alphabet = char(join(symbolSet, ''));
 keys = char(join(keySet, ''));
 
 % Create input -> output map
-dictionary = containers.Map(keySet, valueSet);
+dictionary = containers.Map(keySet, symbolSet);
 
 % Compute number of keys
 nKeys = dictionary.Count;
@@ -62,7 +64,7 @@ corpus = strrep(corpus, sprintf('\r'), ' ');
 % Replace tabs
 corpus = strrep(corpus, sprintf('\t'), ' ');
 
-% Remove multiple spaces
+% Remove whitespace by replacing multiple spaces with a single one
 corpus = regexprep(corpus, ' +', ' ');
 
 % Replace spaces with underscores
@@ -78,26 +80,20 @@ corpus(~ismember(corpus, alphabet)) = '$';
 fileID = fopen(['../Corpora/', fileName(1:end-4), 'Clean.txt'], 'w');
 fprintf(fileID, corpus);
 
-% Define array that stores words comprised of input symbols that map to the
-% respective character.
-corpusInputSym = corpus;
+% Initialise array that stores the corpus comprised of the respective keys
+% that map to each output symbol.
+corpusByKeys = corpus;
 
 % Iterate over all keys
 for j = 1 : nKeys
     
-    currentKey = keySet{j};
-    
-    % Extract corresponding symbols
-    currentSymbols = dictionary(currentKey);
-    
     % Reverse map symbols to corresponding keys
-    corpusInputSymbol(ismember(corpus, currentSymbols)) = currentKey;
+    corpusByKeys(ismember(corpus, dictionary(keySet{j}))) = keySet{j};
     
 end
 
 % Save workspace variables to file
 save(['../Corpora/', fileName(1:end-4), 'Clean'], ...
-    'alphabet', 'corpus', 'corpusInputSym', 'corpusLength', 'dictionary', ...
-    'fileName', 'keys', 'keySet', 'nKeys', 'valueSet' ...
+    'alphabet', 'corpus', 'corpusByKeys', 'corpusLength', ...
+    'dictionary', 'fileName', 'keys', 'keySet', 'nKeys', 'symbolSet' ...
     );
-
