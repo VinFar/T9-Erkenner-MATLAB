@@ -10,7 +10,7 @@ close all;
 clc;
 
 % Specify language
-language = 'german';
+language = 'english';
 
 % Specify depth of tree
 treeDepth = 3;
@@ -18,14 +18,11 @@ treeDepth = 3;
 % Load corpus
 load([language, 'Clean.mat']);
 
-% Use only 10 000 characters for testing
-corpus = corpus(1:200000);
-
 % Initialise tree
 probTree = tree({'_', length(corpus)});
 
 % Iterate over entire corpus
-for index = 1 : length(corpus) - treeDepth
+for index = 1 : (length(corpus) - treeDepth)
     
     % Extract a n-element long sample of the corpus
     sample = corpus(index:index+treeDepth-1);
@@ -37,6 +34,6 @@ end
 
 % Save variables to file
 save(['../Corpora/', fileName(1:end-4), 'ProbabilityTree'], ...
-    'probTree', 'alphabet', 'treeDepth', 'dictionary', 'fileName', ...
-    'keySet', 'symbolSet' ...
+    'probTree', 'alphabet', 'treeDepth', 'dictionary', 'language', ...
+    'keySet', 'symbolSet', 'nKeys'...
     );
