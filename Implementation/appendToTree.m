@@ -6,6 +6,8 @@ global previousIndices;
 global dictionary;
 global cap;
 
+
+
 % Extract current symbol set
 currentSymbolSet = dictionary(newKey);
 
@@ -37,22 +39,30 @@ for previousIndex = previousIndices
         % Character vector containing all previous and the current symbol
         newChars = strcat(previousChars, newChar);
         
+        
         % Compute probability of the current symbol using a n-gram
-        p = exp(-pSequence(probTree, newChars, 1, nGram));
+        p = pSequence(probTree, newChars, 1, nGram);
         
         % Combine both node properties in a cell array
         nodeContent = {newChars, p};
         
+        if p == 0 || p == Inf   %don't add a node if the probality is zero
+            
+        else
+        
         % Add node to tree
         [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndex, nodeContent);
-        
+        nodeContent
+        end
     end
-    
+    if any(indicesAdded)
+        indicesAdded = indicesAdded(indicesAdded~=0);   %only add the indices that were added as a node
     indicesBuffer = [indicesBuffer indicesAdded];
-    
+    else
+    end
 end
 
-% Store indices of previous nodes
+% Store indices of previous nodes global
 previousIndices = indicesBuffer;
 
 end

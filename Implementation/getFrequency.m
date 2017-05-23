@@ -21,12 +21,12 @@ end
 % level of the tree
 characterExists = any(children == sequence(1));
 
-if ~characterExists
+if ~characterExists     %Wenn ein solcher character nicht existiert
     
     frequency = 0;
     
     % Set frequency to the number of characters used to construct the tree.
-    % There id no specific reason so far. This could by any other number <= 0.
+    % There is no specific reason so far. This could by any other number <= 0.
     contentParentNode = probTree.get(1);
     frequencyPrarentNode = contentParentNode{2};
     
@@ -38,8 +38,8 @@ elseif characterExists
     if length(sequence) == 1
         
         % Get node content and extract frequency
-        nodeContent = probTree.get(currentIndex);
-        frequency = nodeContent{2};
+        nodeContent = probTree.get(currentIndex);   %Inhalt vom jeweiligen Knoten speichern
+        frequency = nodeContent{2}; %
         
         % Get parent node content and extract frequency
         contentParentNode = probTree.get(getparent(probTree, currentIndex));

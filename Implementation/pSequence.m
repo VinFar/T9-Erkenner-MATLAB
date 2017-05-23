@@ -5,8 +5,16 @@ function p = pSequence( probTree, sequence, currentIndex, nGram)
 %   an unigram, that is only the current character determines the
 %   probability. nGram = 2 uses a bigram considering one previous character
 %   and so forth.
+%   das gleiche wie pconiditonal nur mit natürlichem logarithmus
 
 % Only one character or unigram
+
+% if length(sequence) ~= nGram
+%     p=0;
+%     sprintf('error: nGram != length of sequence')
+%     return
+% end
+
 if length(sequence) == 1 || nGram == 1
     
     newChar = sequence(end);

@@ -1,9 +1,13 @@
 function p = pConditional( y, x, probTree)
 % pConditional returns the conditional probability of the character y given
 % the sequence of characters x
+%P(y|x) Wahrscheinlichkeit für y unter der Vorraussetzung von x
 
 % Compute conditional probability
 [frequencyXY, frequencyX] = getFrequency(probTree, [x, y], 1);
+
+frequencyXY;
+frequencyX;
 
 p = frequencyXY / frequencyX;
 

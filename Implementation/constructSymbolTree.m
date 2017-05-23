@@ -23,7 +23,7 @@ global nGram
 set(0, 'DefaultFigureWindowStyle', 'normal');
 
 % Load corpus
-load('englishProbabilityTree.mat');
+load('germanProbabilityTree.mat');
 
 % Initialise tree structure
 symbolTree = tree({'_', 1});
@@ -33,7 +33,7 @@ previousIndices = 1;
 nodeIndices = {0 0}';
 keySequence = [];
 newKey = [];
-nGram = 2;
+nGram = 3;
 
 % Instantiate keyboard object
 keyFig = gui;
