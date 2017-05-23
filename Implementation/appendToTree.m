@@ -59,7 +59,7 @@ for previousIndex = previousIndices
         % frequency = nodeContent{2};
         probArray = [probArray nodeContent];
         
-        if (p == 0 | p == inf)
+        if (p == 0 || p == inf)
         else
          % Add node to tree
         [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndex, nodeContent);
