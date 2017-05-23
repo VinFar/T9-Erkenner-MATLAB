@@ -15,11 +15,15 @@ if length(sequence) == 1 || nGram == 1
 else
     
     newChar = sequence(end);
-    condition = sequence(max(1, end-nGram+1):end-1);
+    
+    %example:
+    %condition(in_steinfurt) -> P(t|ur) mit n-gram 3
+    condition = sequence(max(1, end - nGram + 1):end-1);
     
 end
 
 % Compute negativ natural logarithm of conditional probability
+% h(a,x) / h(x)
 p = - log(pConditional(newChar, condition, probTree));
 
 if length(sequence) == 1

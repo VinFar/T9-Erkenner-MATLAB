@@ -377,9 +377,10 @@ function pushbuttonCaps_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton9 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+% caps lock 
 global cap
 if cap == 0
-    cap =1
+    cap = 1
 else
     cap = 0
 end

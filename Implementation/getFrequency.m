@@ -6,6 +6,7 @@ function [ frequency, frequencyPrarentNode] = getFrequency(probTree, ...
 %   the frequency of occurence of the sequence shortened by one character
 
 % Get indices of all children of the first node
+%currentIndex in pconditional = 1
 childrenIndices = getchildren(probTree, currentIndex);
 
 % Initialise vector of characters that holds all children
