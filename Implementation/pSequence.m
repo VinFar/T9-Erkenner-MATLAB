@@ -15,14 +15,16 @@ function p = pSequence( probTree, sequence, currentIndex, nGram)
 %     return
 % end
 
+newChar = sequence(end);
+
 if length(sequence) == 1 || nGram == 1
     
-    newChar = sequence(end);
+    
     condition = '';
     
 else
     
-    newChar = sequence(end);
+    
     condition = sequence(max(1, end-nGram+1):end-1);
     
 end

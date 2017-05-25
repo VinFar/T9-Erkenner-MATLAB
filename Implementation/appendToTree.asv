@@ -17,6 +17,7 @@ indicesBuffer = [];
 
 i=1; 
 for previousIndex = previousIndices
+    %i=length(currentSymbolSet)*length(previousIndices)
     % Initialise buffer that holds newly added indices
     indicesAdded = zeros(size(currentSymbolSet));
     
@@ -47,7 +48,7 @@ for previousIndex = previousIndices
         % Combine both node properties in a cell array
         nodeContent = {newChars, p};
         
-        if p == Inf   %don't add a node if the probality is zero
+        if p == 0 || p == Inf   %don't add a node if the probality is zero
             p
         else
         
@@ -60,7 +61,8 @@ for previousIndex = previousIndices
         i=i+1
         end
     end
-    
+    %extract the probability of the each level of the tree and store it in
+    %a string and delete zeros in this string
       
         
     if any(indicesAdded)
@@ -69,34 +71,19 @@ for previousIndex = previousIndices
     else
         
     end
-    
+    probString
       
-
+%     for i=1:le
+%     probString = symbolTree.Node{i,1}{1,2}
+% i=i+1;
 end
-
-        %extract the probability of the each level of the tree and store it in
-        %a string and delete zeros in this string
         probStringupper=probString(1,:);
         probStringlower=probString(2,:);
-        zerosprobString=(probStringupper == Inf);
+        zerosprobString=(probStringupper==0 | probStringupper == Inf);
         probStringupper(zerosprobString)=[];
         probStringlower(zerosprobString)=[];
-        
-        %sort elements of the probability String and print it out 
-        [sorted,index] = sort(probStringupper)
-        index = probStringlower(index)
-        index=flip(index)
-        format compact
-        %print sorted sequnces
-        ctr=1;
-        for i=index 
-            symbolTree.Node{i,1}
-            if ctr == 10
-                break
-            else
-            ctr=ctr+1;
-            end
-        end
+        [sorted,index
+        probString=[probStringupper;probStringlower]
         
 % Store indices of previous nodes global
 previousIndices = indicesBuffer;
