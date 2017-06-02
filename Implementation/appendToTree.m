@@ -13,6 +13,10 @@ currentSymbolSet = dictionary(newKey);
 
 % Initialise buffer that holds indices
 indicesBuffer = [];
+probCellArray = {};
+charsequence = [];
+psequence = [];
+
 
 for previousIndex = previousIndices
     
@@ -48,16 +52,14 @@ for previousIndex = previousIndices
         % P(sequence)
         p = exp(-pSequence(probTree, newChars, 1, nGram));
         
+        
         % Combine both node properties in a cell array
         % newchars is strcat
         nodeContent = {newChars, p};
         
-        % Versuch ein array mit wahrscheinlichkeiten und sequence zu
-        % erzeugen um mit max die beste wahrscheinlichkeit zu finden
         % symbolTree.Node{t,1}{1,2} = p
         % nodeContent = probTree.get(currentIndex);
         % frequency = nodeContent{2};
-        probArray = [probArray nodeContent];
         
         if (p == 0 || p == inf)
         else
@@ -65,8 +67,13 @@ for previousIndex = previousIndices
         [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndex, nodeContent);
         end
         
+        % get an array of prob and sequence
+         probCellArray = [probCellArray nodeContent];
+
+        
     end
-  
+    probArray = probCellArray;
+    
     if any(indicesAdded)
       indicesAdded = indicesAdded(indicesAdded~=0);   %only add the indices that were added as a node
     indicesBuffer = [indicesBuffer indicesAdded];
@@ -77,5 +84,24 @@ end
 
 % Store indices of previous nodes
 previousIndices = indicesBuffer;
+buffer =  probArray{1,1};
+pbuffer = probArray{1,2};
+
+% fprintf(['\n sequence: ',buffer,'|||']);
+% fprintf([' p sequence: %d',probArray{1,2}]);
+
+
+for i = 2 : 2 : length(probArray)-2
+
+     if(probArray{1,(i+2)} < pbuffer)
+        buffer = probArray{1,i+1};
+        pbuffer = probArray{1,i};
+        
+       % fprintf(['\n sequence: ',buffer,' |||']);
+       % fprintf(' p sequence: %e',probArray{1,i});
+     end
+end
+
+ fprintf(['\n best sequence: ',buffer]);
 
 end

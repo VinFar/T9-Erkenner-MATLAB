@@ -18,6 +18,7 @@ global nodeIndices
 global probTree
 global cap
 global nGram
+global probArray
 
 % Set figure window style to normal to avoid the GUI being docked
 set(0, 'DefaultFigureWindowStyle', 'normal');
@@ -34,6 +35,7 @@ nodeIndices = {0 0}';
 keySequence = [];
 newKey = [];
 nGram = 2;
+probArray = {};
 
 % Instantiate keyboard object
 keyFig = gui;
