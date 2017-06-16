@@ -1,5 +1,5 @@
     function [symbolTree,index] = appendToTree(newKey, symbolTree, probTree, nGram)
-    % appendToTree appends all possible output symbols corresponding to the
+    %appenToTree appends all possible output symbols corresponding to the
     % character newKey to the symbolTree
     
     global previousIndices;
@@ -7,8 +7,7 @@
     global cap;
     global probSymbol;
     global previousprobString;
-    global probString;
-    
+
     probSymbol = Inf(2, 5);
     index=zeros(10);
 
@@ -57,10 +56,10 @@
             if p == Inf || symbolTree.Node{prev,1}{1,3} == 0 %don't add a node if the probality is zero or
                                                              %the boolean
                                                              %is zero
-                if symbolTree.Node{prev,1}{1,3} == 0 %%%DEBUG
-               % sprintf('boolean was 0 at ')
-                prev;
-                end
+                % if symbolTree.Node{prev,1}{1,3} == 0 %%%DEBUG
+                % sprintf('boolean was 0 at ');
+                % prev
+                % end
             else
                 % Add node to tree
                 [symbolTree, indicesAdded(j)] = symbolTree.addnode(previousIndex, nodeContent);
@@ -124,20 +123,17 @@
     index = flip(index);
     index; %these are the nodes with the highest probability
     format compact
-    %print sorted sequnces
+    % print sorted sequnces
    
     % sprintf('ausgabe vorher');
-    
     for i=index     %set the boolean of this results to 1, to set them active and print them
        symbolTree = symbolTree.set(i, {symbolTree.Node{i, 1}{1, 1}, symbolTree.Node{i, 1}{1, 2}, 1});
-       symbolTree.Node{i,1}
+       symbolTree.Node{i,1}; 
     
     end
     
     % Store indices of previous nodes global
     previousIndices = indicesBuffer;
     previousprobString = probString;
-    
-    
 
     end

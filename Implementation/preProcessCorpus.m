@@ -10,7 +10,7 @@ clc;
 
 
 % Specify filename
-fileName = 'german.txt';
+fileName = 'germanTest.txt';
 
 % Define possible input symbols
 keySet = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '#'}';
@@ -31,8 +31,8 @@ symbolSet = { ...
     }';
 
 % Compose entire key set and alphabet
-alphabet = char(join(symbolSet, ''));
-keys = char(join(keySet, ''));
+alphabet = char(strjoin(symbolSet, ''));
+keys = char(strjoin(keySet, ''));
 
 % Create input -> output map
 dictionary = containers.Map(keySet, symbolSet);

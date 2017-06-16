@@ -35,14 +35,14 @@ nGram = 3;
 language = 'german';
 
 %load corpus clean
-load([language,'Clean.mat']);
+load([language,'TestClean.mat']);
 
 %load prob Tree
 load([language,'ProbabilityTree.mat']);
 
 % Test sequence
-% test_sequence = corpus(10000:10200);
-test_sequence = 'hallo_ich_komme_aus_steinfurt_und_studiere_elektro';
+test_sequence = corpus(1:1000);
+% test_sequence = 'hallo_ich_komme_aus_steinfurt_und_studiere_elektro';
 
 key_sequence = test_sequence;
 
@@ -52,22 +52,22 @@ key_sequence(ismember(test_sequence, dictionary(keySet{j}))) = keySet{j};
 
 end
 
-for j = 1 : length(key_sequence)
+for j = 1 : 1 : length(key_sequence)
     
     newKey = num2str(key_sequence(j));
     
     keySequence = [keySequence, newKey];
     
     [symbolTree,index] = appendToTree(newKey, symbolTree, probTree, nGram);
-
+    
 end
     
-    prov_sequence = symbolTree.Node{index(length(index)),1}{1, 1};
+   prov_sequence = symbolTree.Node{index(length(index)),1}{1, 1};
     error_rate = 0;
     inco_sign = 0;
-    
+   
     for j =  2 : length(test_sequence)
-       if(prov_sequence(j+1) ~= test_sequence(j))
+      if(prov_sequence(j+1) ~= test_sequence(j))
            inco_sign = inco_sign + 1;
        end
     end
