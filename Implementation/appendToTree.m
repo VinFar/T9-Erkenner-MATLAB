@@ -104,8 +104,8 @@
 
     end
 
-    %extract the probability of the each level of the tree and store it in
-    %a string and delete zeros in this string
+    % extract the probability of the each level of the tree and store it in
+    % a string and delete zeros in this string
     probStringupper = probString(1, :); %upper is the probability
     probStringlower = probString(2, :); %and lower is the node
     zerosprobString = (probStringupper == Inf);

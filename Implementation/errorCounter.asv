@@ -41,21 +41,22 @@ load([language,'TestClean.mat']);
 load([language,'ProbabilityTree.mat']);
 
 % Test sequence
-test_sequence = corpus(1:50);
-% test_sequence = 'hallo_ich_,_komme_aus._hallo_ich_komme_aus';
+% test_sequence = corpus(1:300);
+test_sequence = 'hallo_ich_komme_aus._steinfurt_und_studiere_elektro';
 
-% initialise 
 key_sequence = test_sequence;
-prov_sequence = '';
+test_sequence = ['' , test_sequence];
 
-% change to key_sequence for t9
 for j = 1 : nKeys
     
 key_sequence(ismember(test_sequence, dictionary(keySet{j}))) = keySet{j};
 
 end
 
-% get keys into append to tree
+error_rate = 0;
+inco_sign = 0;
+length_test = length(test_sequence);
+
 for j = 1 : 1 : length(key_sequence)
     
     if (key_sequence(j) ~= '1')
@@ -64,36 +65,23 @@ for j = 1 : 1 : length(key_sequence)
     [symbolTree,index] = appendToTree(newKey, symbolTree, probTree, nGram);   
     
     else
-    prov_buffer = symbolTree.Node{index(length(index)),1}{1, 1};
-    prov_sequence = [prov_sequence,'.',prov_buffer(2:end)];
+    prov_sequence = symbolTree.Node{index(length(index)),1}{1, 1};
+    prov_sequence = [prov_sequence , '.'];
     
-    symbolTree = tree({'_', 1,1});
-    previousIndices = 1;
-    nodeIndices = {0 0}';
-    keySequence = [];
-    newKey = [];
-    end
+     % test sequence abschneiden
+    key_sequence = key_sequence(j:end);
+    clearvars symbolTree;
     
-end
-    
-    % wenn nicht mit punkt oder komma abgeschlossen wird
-    if(key_sequence(end) ~= '1')
-    prov_buffer = symbolTree.Node{index(length(index)),1}{1, 1};
-    prov_sequence = [prov_sequence,'.',prov_buffer(2:end)];
-    end
-    
-    error_rate = 0;
-    inco_sign = 0;
-    
-     for j =  1 : length(test_sequence)
-      if(prov_sequence(j+1) ~= test_sequence(j))
+     for j =  1 : length(prov_sequence)
+      if(prov_sequence(j) ~= test_sequence(j))
            inco_sign = inco_sign + 1;
       end
      end
      
-     
-
-    error_rate = inco_sign / length(test_sequence)
+    end
+end
+    
+    error_rate = inco_sign / length_test
     
     
     
