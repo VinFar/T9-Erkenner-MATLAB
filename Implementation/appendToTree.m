@@ -108,15 +108,16 @@
     end
     i=1;
     if isempty(indicesBuffer)
-        sprintf('Error: All Nodes that could be added have the probability 0!')
+       % sprintf('Error: All Nodes that could be added have the probability 0!')
          for index=previousIndices
              nodeContent=symbolTree.Node{index,1}{1,1};
              nodeContent=strcat(nodeContent,currentSymbolSet(1));
         [symbolTree, indicesAdded(i)] = symbolTree.addnode(index, {nodeContent,Inf,1});
-        symbolTree.Node{indicesAdded(i),1}{1,1}
+        symbolTree.Node{indicesAdded(i),1}{1,1};
         i=i+1;
          end
          previousIndices=indicesAdded(indicesAdded~=0);
+         index = previousIndices;
          return %there is no need to sort the probString because all Nodes now have the
                 %probability 0
     end
@@ -150,7 +151,7 @@
        %if cap == 1
        previousString = symbolTree.Node{i,1}{1,1};
        previousString = previousString(1:end-1);
-       symbolTree.Node{i,1} 
+       symbolTree.Node{i,1} ; % note 
     
     end
     
