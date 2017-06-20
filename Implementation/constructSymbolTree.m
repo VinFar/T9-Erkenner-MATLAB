@@ -26,7 +26,11 @@ set(0, 'DefaultFigureWindowStyle', 'normal');
 load('germanProbabilityTree.mat');
 
 % Initialise tree structure
+<<<<<<< HEAD
 symbolTree = tree({'', 1,1});
+=======
+symbolTree = tree({'', 0,1});
+>>>>>>> 9a569aa6da0b1002f6b5e100129d9a39eafbe80c
 
 % Initialise arrays
 previousIndices = 1;

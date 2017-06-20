@@ -79,7 +79,7 @@
                 %if log of probability of the added node is bigger than the node
                 %of the same element, then store it in probSymbol and
                 %set the boolean for active/notactive
-                %p = -log(pConditional(currentSymbol,previousChars,probTree)); %delete this line if
+                p = -log(pConditional(currentSymbol,previousChars,probTree)); %delete this line if
                 %you want to get the complete sequence probability
                 
                 if probSymbol(1, j) > p
@@ -108,17 +108,15 @@
     end
     i=1;
     if isempty(indicesBuffer)
-        sprintf('Error: All Nodes that could be added have the probability 0!')
+        sprintf('Error: All Nodes that could be added were Inf!')
          for index=previousIndices
-             nodeContent=symbolTree.Node{index,1}{1,1};
-             nodeContent=strcat(nodeContent,currentSymbolSet(1));
-        [symbolTree, indicesAdded(i)] = symbolTree.addnode(index, {nodeContent,Inf,1});
-        symbolTree.Node{indicesAdded(i),1}{1,1}
+             n
+        [symbolTree, indicesAdded(i)] = symbolTree.addnode(index, {currentSymbolSet(1),Inf,1});
+        symbolTree.Node{,1}{1,1}
         i=i+1;
          end
-         previousIndices=indicesAdded(indicesAdded~=0);
-         return %there is no need to sort the probString because all Nodes now have the
-                %probability 0
+         previousIndices=indicesAdded;
+         return
     end
     
     
@@ -136,8 +134,8 @@
     index = probStringlower(index);
     
     
-    if length(index) >= 10 %short the K-Amount to 3 results
-      index=index(1:10);
+    if length(index) >= 3 %short the K-Amount to 3 results
+      index=index(1:3);
     end
     index = flip(index);
     index; %these are the nodes with the highest probability
