@@ -34,15 +34,15 @@ nGram = 3;
 % define language
 language = 'german';
 
-%load corpus clean
-load([language,'TestClean.mat']);
+% load prob Tree
+% load([language,'ProbabilityTree.mat']);
+load('all.mat');
 
-%load prob Tree
-load([language,'ProbabilityTree.mat']);
-
+% load corpus clean
+% load([language,'TestClean.mat']);
 % Test sequence
-test_sequence = corpus(1:50);
-% test_sequence = 'hallo_ich_,_komme_aus._hallo_ich_komme_aus';
+% test_sequence = corpus(1:200);
+ test_sequence = 'hallo_ich,_komme_aus._hallo_ich_komme_aus';
 
 % initialise 
 key_sequence = test_sequence;
@@ -65,13 +65,14 @@ for j = 1 : 1 : length(key_sequence)
     
     else
     prov_buffer = symbolTree.Node{index(length(index)),1}{1, 1};
-    prov_sequence = [prov_sequence,'.',prov_buffer(2:end)];
+    prov_sequence = [prov_sequence,'.',prov_buffer];
     
-    symbolTree = tree({'_', 1,1});
+    symbolTree = tree({'', 1,1});
     previousIndices = 1;
     nodeIndices = {0 0}';
     keySequence = [];
     newKey = [];
+    
     end
     
 end
@@ -79,14 +80,14 @@ end
     % wenn nicht mit punkt oder komma abgeschlossen wird
     if(key_sequence(end) ~= '1')
     prov_buffer = symbolTree.Node{index(length(index)),1}{1, 1};
-    prov_sequence = [prov_sequence,'.',prov_buffer(2:end)];
+    prov_sequence = [prov_sequence,'.',prov_buffer];
     end
     
     error_rate = 0;
     inco_sign = 0;
     
      for j =  1 : length(test_sequence)
-      if(prov_sequence(j+1) ~= test_sequence(j))
+      if(prov_sequence(j+2) ~= test_sequence(j))
            inco_sign = inco_sign + 1;
       end
      end
